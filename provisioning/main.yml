@@ -1,0 +1,22 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: yes
+
+  pre_tasks:
+    - name: Update apt cache if needed.
+      apt: update_cache=yes cache_valid_time=3600
+
+  roles:
+    - role: angstwad.docker_ubuntu
+    - geerlingguy.firewall
+    - geerlingguy.ntp
+    - geerlingguy.git
+    - geerlingguy.java
+    - geerlingguy.jenkins
+
+  tasks:
+    - include: setup.yml
+
+  vars_files:
+    - vars/main.yml
