@@ -11,6 +11,13 @@
     append: yes
   become: yes
 
+- name: Add jenkins user to docker group.
+  user:
+    name: jenkins
+    groups: docker
+    append: yes
+  become: yes
+
 - name: Install Pip.
   apt: name=python-pip state=installed
   become: yes
@@ -20,13 +27,13 @@
   become: yes
   become_method: sudo
 
-- name: Add your jenkins to the docker user group
-  shell: sudo usermod -aG docker && nohup bash -c «sleep 2s && reboot» & 
-  async: 0
-  poll: 0
-  ignore_errors: true
-  register: reboot
+#- name: Restart server
+#  shell: reboot && sleep 2
+#  async: 0
+#  poll: 0
+#  ignore_errors: true
+#  register: reboot
 
-- name: Waiting for server to come back after restart
-  local_action: wait_for host={{ ansible_ssh_host }} state=started port=22 delay=10 timeout=900
-  sudo: false
+#- name: Waiting for server to come back after restart
+#  local_action: wait_for host={{ ansible_ssh_host }} state=started port=22 delay=30 timeout=900
+#  sudo: false

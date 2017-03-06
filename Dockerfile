@@ -27,4 +27,4 @@ EXPOSE 8101
 # Copy entrypoint script into the image
 WORKDIR $dockflask_proj
 COPY ./docker-entrypoint.sh "$dockflask_proj/scripts/"
-ENTRYPOINT ["dockflask_proj/scripts/docker-entrypoint.sh"]
+ENTRYPOINT ["/opt/python_api/scripts/docker-entrypoint.sh"]

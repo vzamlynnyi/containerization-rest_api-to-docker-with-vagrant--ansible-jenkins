@@ -4,7 +4,7 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties/>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.0.5">
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.1.0">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
@@ -24,16 +24,16 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <authToken>ceYJFz2kHxV9</authToken>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
 ls -lah
-docker --version
-docker build -t vzamlynnyi/test
+docker build -t vzamlynnyi/rest_api .
 docker login --username=vzamlynnyi --password=philMent
-#docker push vzamlynnyi/test</command>
+docker push vzamlynnyi/rest_api</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
